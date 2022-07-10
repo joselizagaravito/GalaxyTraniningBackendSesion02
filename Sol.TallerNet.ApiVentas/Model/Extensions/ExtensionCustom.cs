@@ -54,35 +54,24 @@ namespace Sol.TallerNet.ApiVentas.Model.Extensions
 
             app.MapGet("/pedido/{id}", async (IPedidoApplication pedidoApplication, int id) =>
             {
-
                 PedidoByIdOutput pedido = await pedidoApplication.PedidoById(id);
                 return Results.Ok(pedido);
-
             });
 
-            app.MapGet("/articulo",
-                //[Authorize]
-            (IArticuloRepository articuloRepository,
-                IArticuloApplication articuloApplication,
-                ILogger<Program> logger) =>
+            app.MapGet("/articulo", async (IArticuloRepository articuloRepository, IArticuloApplication articuloApplication, ILogger<Program> logger, int nropag, int regxpag, string? filtro) =>
             {
-                logger.LogError("Algo esta muy mal");
-                logger.LogInformation("Por aca paso nuestro metodo");
-                string algo = articuloApplication.Get();
-                return Results.Ok(articuloRepository.List());
-
+                ArticuloListOutput articulos = await articuloApplication.Get(filtro, regxpag, nropag);
+                return Results.Ok(articulos);
             });
 
-            app.MapGet("/articulo/{id}",
-                //[Authorize]
-            (IArticuloRepository articuloRepository,
-                ILogger<Program> logger, int id) =>
-                {
-                    return Results.Ok(articuloRepository.Get(id));
-                });
+            app.MapGet("/articulo/{id}", async (IArticuloRepository articuloRepository, IArticuloApplication articuloApplication, ILogger<Program> logger, int id) =>
+            {
+                ArticuloByIdOutput articulo = await articuloApplication.Get(id);
+                return Results.Ok(articuloRepository.Get(id));
+            });
 
             app.MapPost("/articulo",
-          //[Authorize]
+            //[Authorize]
             (IArticuloRepository articuloRepository,
           ILogger<Program> logger, Articulo art) =>
           {
@@ -90,14 +79,15 @@ namespace Sol.TallerNet.ApiVentas.Model.Extensions
           });
 
             app.MapPut("/articulo",
-        //[Authorize]
+            //[Authorize]
             (IArticuloRepository articuloRepository,
         ILogger<Program> logger, Articulo art) =>
         {
             return Results.Ok(articuloRepository.Update(art));
         });
 
-            app.MapGet("/usuario", [Authorize] async (IUsuarioRepository usuarioRepository) =>
+            //app.MapGet("/usuario", [Authorize] async (IUsuarioRepository usuarioRepository) =>
+            app.MapGet("/usuario", async (IUsuarioRepository usuarioRepository) =>
             {
 
                 var res = await usuarioRepository.List();

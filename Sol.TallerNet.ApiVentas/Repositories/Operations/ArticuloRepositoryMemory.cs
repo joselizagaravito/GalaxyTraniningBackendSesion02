@@ -1,4 +1,5 @@
-﻿using Sol.TallerNet.ApiVentas.Repositories.Entities;
+﻿using Sol.TallerNet.ApiVentas.Applcations.Dtos.Input;
+using Sol.TallerNet.ApiVentas.Repositories.Entities;
 
 namespace Sol.TallerNet.ApiVentas.Repositories.Operations
 {
@@ -28,8 +29,7 @@ namespace Sol.TallerNet.ApiVentas.Repositories.Operations
         {
             throw new NotImplementedException();
         }
-
-        public List<Articulo> List()
+        public async Task<List<Articulo>> List(ArticuloListInput articuloListInput)
         {
             _logger.LogInformation("Llego aca");
             return _articuloList;

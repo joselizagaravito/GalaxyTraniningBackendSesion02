@@ -1,6 +1,6 @@
 ﻿namespace Sol.TallerNet.ApiVentas.Applcations.Dtos.Input
 {
-    public class PedidoListInput
+    public class ArticuloListInput
     {
         public string? Filtro { get; set; }
         public int RegXPag { get; set; }

@@ -22,20 +22,20 @@ namespace Sol.TallerNet.ApiVentas.Repositories.Operations
                                     where x.IdPedido == id
                                     select x).FirstOrDefaultAsync();
 
-            var res = await (from x in tallerContext.Pedido
-                             join
-                              y in tallerContext.Usuario
-                             on x.CodUsuario equals y.IdUsuario
-                             where x.IdPedido == id
-                             select new
-                             {
-                                 Codigo = x.IdPedido,
-                                 NombreUsuario = y.Nombres,
-                                 Fecha = y.FechaRegistro
+            //var res = await (from x in tallerContext.Pedido
+            //                 join
+            //                  y in tallerContext.Usuario
+            //                 on x.CodUsuario equals y.IdUsuario
+            //                 where x.IdPedido == id
+            //                 select new
+            //                 {
+            //                     Codigo = x.IdPedido,
+            //                     NombreUsuario = y.Nombres,
+            //                     Fecha = y.FechaRegistro
 
-                             }).FirstOrDefaultAsync();
+            //                 }).FirstOrDefaultAsync();
 
-            var res2 = (tallerContext.Pedido.FromSqlRaw("exec spPedidoPorId " + id.ToString()).ToList());
+            //var res2 = (tallerContext.Pedido.FromSqlRaw("exec spPedidoPorId " + id.ToString()).ToList());
 
             return pedido;
         }
@@ -53,7 +53,7 @@ namespace Sol.TallerNet.ApiVentas.Repositories.Operations
             pedidoListInput.TotalReg = list.Count();
 
             var resultado = await list
-                .Skip(pedidoListInput.NroPag * pedidoListInput.RegXPag)
+                .Skip((pedidoListInput.NroPag-1) * pedidoListInput.RegXPag)
                 .Take(pedidoListInput.RegXPag)
                 .ToListAsync();
 

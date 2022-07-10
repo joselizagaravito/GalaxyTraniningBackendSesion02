@@ -22,6 +22,14 @@ namespace Sol.TallerNet.ApiVentas.Model.Mappers
                .ForMember(dto => dto.NombreUsuario, map => map.MapFrom(source => source.Usuario.Nombres))
                ;
             ///revisar cuando sea nulo
+
+            CreateMap<Articulo, ArticuloByIdOutput>()
+               .ForMember(dto => dto.IdArticulo, map => map.MapFrom(source => source.IdArticulo))
+               .ForMember(dto => dto.Nombre, map => map.MapFrom(source => source.Nombre))
+               .ForMember(dto => dto.FechaRegistro, map => map.MapFrom(source => source.FechaRegistro))
+               .ForMember(dto => dto.Precio, map => map.MapFrom(source => source.Precio))
+               .ForMember(dto => dto.Costo, map => map.MapFrom(source => source.Costo))
+               ;
         }
     }
 }

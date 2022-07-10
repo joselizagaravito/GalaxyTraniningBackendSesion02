@@ -11,8 +11,7 @@ namespace Sol.TallerNet.ApiVentas.Applcations.Operations
         private readonly IPedidoRepositorio pedidoRepositorio;
         private readonly IMapper mapper;
 
-        public PedidoApplication(IPedidoRepositorio pedidoRepositorio,
-            IMapper mapper)
+        public PedidoApplication(IPedidoRepositorio pedidoRepositorio, IMapper mapper)
         {
             this.pedidoRepositorio = pedidoRepositorio;
             this.mapper = mapper;
