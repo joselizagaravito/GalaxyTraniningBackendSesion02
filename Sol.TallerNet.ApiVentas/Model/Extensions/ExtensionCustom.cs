@@ -67,7 +67,7 @@ namespace Sol.TallerNet.ApiVentas.Model.Extensions
             app.MapGet("/articulo/{id}", async (IArticuloRepository articuloRepository, IArticuloApplication articuloApplication, ILogger<Program> logger, int id) =>
             {
                 ArticuloByIdOutput articulo = await articuloApplication.Get(id);
-                return Results.Ok(articuloRepository.Get(id));
+                return Results.Ok(articulo);
             });
 
             app.MapPost("/articulo",

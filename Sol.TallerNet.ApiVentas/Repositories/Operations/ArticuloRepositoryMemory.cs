@@ -19,7 +19,7 @@ namespace Sol.TallerNet.ApiVentas.Repositories.Operations
             logger.LogInformation(Guid.NewGuid().ToString());
             _logger = logger;
         }
-        public Articulo Get(int id)
+        public async Task<Articulo> Get(int id)
         {
             var articulo = _articuloList.FirstOrDefault(t => t.IdArticulo == id);
             return articulo;

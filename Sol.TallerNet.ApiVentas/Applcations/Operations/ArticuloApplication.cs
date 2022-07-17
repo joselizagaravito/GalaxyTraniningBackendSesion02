@@ -32,9 +32,12 @@ namespace Sol.TallerNet.ApiVentas.Applcations.Operations
             return res;
         }
 
-        public Task<ArticuloByIdOutput> Get(int id)
+        public async Task<ArticuloByIdOutput> Get(int id)
         {
-            throw new NotImplementedException();
+            Articulo articulo = await articuloRepository.Get(id);
+            ArticuloByIdOutput res = mapper.Map<ArticuloByIdOutput>(articulo);
+            
+            return res;
         }
     }
 }

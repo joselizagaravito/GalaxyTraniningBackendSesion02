@@ -13,9 +13,9 @@ namespace Sol.TallerNet.ApiVentas.Repositories.Operations
         {
             this.tallerContext = tallerContext;
         }
-        public Articulo Get(int id)
+        public async Task<Articulo> Get(int id)
         {
-            return tallerContext.Articulo.FirstOrDefault(t => t.IdArticulo == id);
+            return await tallerContext.Articulo.FirstOrDefaultAsync(t => t.IdArticulo == id);
         }
 
         public Articulo Insert(Articulo articulo)

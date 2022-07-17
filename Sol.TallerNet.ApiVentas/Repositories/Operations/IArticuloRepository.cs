@@ -8,6 +8,6 @@ namespace Sol.TallerNet.ApiVentas.Repositories.Operations
         Task<List<Articulo>> List(ArticuloListInput articuloListInput);
         Articulo Insert(Articulo articulo);
         Articulo Update(Articulo articulo);
-        Articulo Get(int id);
+        Task<Articulo> Get(int id);
     }
 }
